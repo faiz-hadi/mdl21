@@ -1,0 +1,168 @@
+using System;
+
+namespace xoxo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char[,] board = new char[3,3];
+            char player = 'X';
+            bool gameEnd = false;
+            int counter = 9;
+
+            Console.Clear();
+
+            //inisialisasi player
+            Init(board);
+
+        try{  
+            while(!gameEnd)
+            {
+            printBoard(board);
+            
+            Console.WriteLine("Turns left : "+counter);
+            Console.WriteLine("Player "+player+" turn");
+            Console.WriteLine(" ");
+            Console.Write("Please input row of your choice (0-2): ");
+            int row = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Now please innput coloumn you desire (0-2): ");
+            int coloumn = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(" ");
+            
+            if(board[row,coloumn] == 'X' || board[row,coloumn] == 'O'){
+                Console.WriteLine("  Already taken  ");
+            }else{
+                board[row,coloumn] = player;
+                counter--;
+            }
+
+            //Cek kondisi win/lose
+            if(player == board[0,0] && player == board[0,1] && player == board[0,2])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [0,0] && player == board[1,1] && player == board [2,2])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [0,0] && player == board[1,0] && player == board [2,0])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [0,1] && player == board[1,1] && player == board [2,1])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [0,2] && player == board[1,1] && player == board [2,0])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [1,0] && player == board[1,1] && player == board [1,2])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [2,0] && player == board[2,1] && player == board [2,2])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+            if(player == board [0,2] && player == board[1,2] && player == board [2,2])
+            {
+                Console.WriteLine(" ");
+                printBoard(board);
+                Console.WriteLine(" ");
+                Console.WriteLine("Player " +player+ " win the match !");
+                gameEnd = true;
+                Console.Read();
+            }
+
+            if(counter == 0){
+                Console.WriteLine("Draw ...");
+                gameEnd = true;
+            }
+
+            if(player == 'X')
+            {
+                player = 'O';
+            }else
+                {
+                player = 'X';
+                }
+            }
+            }catch(System.FormatException){
+                Console.WriteLine("Please Input Number 0-2 Only *emot sungkem*");
+                
+            }catch(System.Exception){
+                Console.WriteLine("Something is wrong, Please restart the game");
+                Console.WriteLine("Possible Cause :");
+                Console.WriteLine("- Your input isn't inside the instruction boundary");
+            }
+            Console.WriteLine("The game is over ...");
+            Console.WriteLine("Game by Faiz Hadi Maulana");
+            Console.WriteLine("You can send lil bit money to help the developer stay alive");
+            Console.ReadLine();
+        }
+
+        private static void printBoard(char[,] board)
+        {   
+            Console.WriteLine("  | 0 | 1 | 2 |");
+            for(int row = 0; row < 3; row++)
+            {  
+               Console.Write(row + " | ");
+               for(int coloumn = 0; coloumn < 3; coloumn++)
+               {
+                  Console.Write(board[row,coloumn]);
+                  Console.Write(" | ");
+               }
+               Console.WriteLine();
+            }   
+        }
+        private static void Init(char[,] board)
+        {
+           for(int row = 0; row < 3; row++)
+            {  
+              
+               for(int coloumn = 0; coloumn < 3; coloumn++)
+               {
+                  board[row,coloumn] = ' ';
+               }
+               
+            }   
+        }
+    }
+}
